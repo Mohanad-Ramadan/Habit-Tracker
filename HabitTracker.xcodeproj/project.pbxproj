@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		148E52FD2D3347190034581B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FC2D3347190034581B /* AuthViewModel.swift */; };
+		148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FE2D3347300034581B /* AuthDataResult.swift */; };
+		148E53022D3347470034581B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53012D3347470034581B /* AuthenticationManager.swift */; };
+		148E53042D3348070034581B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53032D3348070034581B /* AuthenticationView.swift */; };
+		148E53062D3348270034581B /* LogeInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53052D3348270034581B /* LogeInView.swift */; };
+		148E53082D3348310034581B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53072D3348310034581B /* SignUpView.swift */; };
+		148E530D2D33489D0034581B /* CSInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E530C2D33489D0034581B /* CSInputField.swift */; };
+		148E530F2D3348E00034581B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E530E2D3348E00034581B /* HomeView.swift */; };
+		148E53122D334FBB0034581B /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 148E53112D334FBB0034581B /* Secrets.xcconfig */; };
 		14FB6B072D333462001BB5FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FB6B012D333462001BB5FB /* Preview Assets.xcassets */; };
 		14FB6B0A2D333462001BB5FB /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FB6B052D333462001BB5FB /* HabitTrackerApp.swift */; };
 		14FB6B142D333490001BB5FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14FB6B112D333490001BB5FB /* Assets.xcassets */; };
@@ -16,13 +25,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		148E52FC2D3347190034581B /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		148E52FE2D3347300034581B /* AuthDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResult.swift; sourceTree = "<group>"; };
+		148E53012D3347470034581B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		148E53032D3348070034581B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		148E53052D3348270034581B /* LogeInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogeInView.swift; sourceTree = "<group>"; };
+		148E53072D3348310034581B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		148E530C2D33489D0034581B /* CSInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSInputField.swift; sourceTree = "<group>"; };
+		148E530E2D3348E00034581B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		148E53112D334FBB0034581B /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		14FB6AF02D333450001BB5FB /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FB6B012D333462001BB5FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		14FB6B052D333462001BB5FB /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
 		14FB6B0B2D333490001BB5FB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		14FB6B102D333490001BB5FB /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		14FB6B112D333490001BB5FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		14FB6B172D33352C001BB5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14FB6B182D3335B5001BB5FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DC98377CC6D2621DC3FC8C5 /* Pods_HabitTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4CFCD9CAB03A7781937873 /* Pods-HabitTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitTracker.release.xcconfig"; path = "Target Support Files/Pods-HabitTracker/Pods-HabitTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -41,6 +57,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		148E52FA2D33464C0034581B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				148E52FC2D3347190034581B /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		148E52FB2D3346520034581B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				148E52FE2D3347300034581B /* AuthDataResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		148E53002D3347400034581B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				148E53012D3347470034581B /* AuthenticationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		148E53092D3348550034581B /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				148E530C2D33489D0034581B /* CSInputField.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		148E53132D3351330034581B /* AuthenticationViews */ = {
+			isa = PBXGroup;
+			children = (
+				148E53032D3348070034581B /* AuthenticationView.swift */,
+				148E53052D3348270034581B /* LogeInView.swift */,
+				148E53072D3348310034581B /* SignUpView.swift */,
+			);
+			path = AuthenticationViews;
+			sourceTree = "<group>";
+		};
 		14FB6AE72D33344F001BB5FB = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +128,11 @@
 		14FB6B062D333462001BB5FB /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
-				14FB6B172D33352C001BB5FB /* Info.plist */,
 				14FB6B052D333462001BB5FB /* HabitTrackerApp.swift */,
+				148E53002D3347400034581B /* Managers */,
 				14FB6B0C2D333490001BB5FB /* Views */,
-				14FB6B0D2D333490001BB5FB /* ViewModels */,
-				14FB6B0E2D333490001BB5FB /* Models */,
+				148E52FA2D33464C0034581B /* ViewModels */,
+				148E52FB2D3346520034581B /* Models */,
 				14FB6B122D333490001BB5FB /* Support */,
 				14FB6B022D333462001BB5FB /* Preview Content */,
 			);
@@ -85,29 +143,18 @@
 			isa = PBXGroup;
 			children = (
 				14FB6B0B2D333490001BB5FB /* MainView.swift */,
+				148E530E2D3348E00034581B /* HomeView.swift */,
+				148E53132D3351330034581B /* AuthenticationViews */,
+				148E53092D3348550034581B /* CustomViews */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		14FB6B0D2D333490001BB5FB /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		14FB6B0E2D333490001BB5FB /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		14FB6B122D333490001BB5FB /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				14FB6B182D3335B5001BB5FB /* GoogleService-Info.plist */,
-				14FB6B102D333490001BB5FB /* Secrets.xcconfig */,
+				148E53112D334FBB0034581B /* Secrets.xcconfig */,
 				14FB6B112D333490001BB5FB /* Assets.xcassets */,
 			);
 			path = Support;
@@ -191,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148E53122D334FBB0034581B /* Secrets.xcconfig in Resources */,
 				14FB6B072D333462001BB5FB /* Preview Assets.xcassets in Resources */,
 				14FB6B192D3335B5001BB5FB /* GoogleService-Info.plist in Resources */,
 				14FB6B142D333490001BB5FB /* Assets.xcassets in Resources */,
@@ -247,7 +295,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				14FB6B162D333490001BB5FB /* MainView.swift in Sources */,
+				148E530F2D3348E00034581B /* HomeView.swift in Sources */,
+				148E53062D3348270034581B /* LogeInView.swift in Sources */,
 				14FB6B0A2D333462001BB5FB /* HabitTrackerApp.swift in Sources */,
+				148E530D2D33489D0034581B /* CSInputField.swift in Sources */,
+				148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */,
+				148E53082D3348310034581B /* SignUpView.swift in Sources */,
+				148E53042D3348070034581B /* AuthenticationView.swift in Sources */,
+				148E53022D3347470034581B /* AuthenticationManager.swift in Sources */,
+				148E52FD2D3347190034581B /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +312,7 @@
 /* Begin XCBuildConfiguration section */
 		14FB6AFC2D333450001BB5FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 148E53112D334FBB0034581B /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -319,6 +376,7 @@
 		};
 		14FB6AFD2D333450001BB5FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 148E53112D334FBB0034581B /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -386,12 +444,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Habit Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,12 +475,11 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Habit Tracker";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

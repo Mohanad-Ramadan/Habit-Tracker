@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var authViewModel = AuthViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            if authViewModel.userAuthenticated {
+                HomeView()
+            } else {
+                AuthenticationView()
+            }
         }
-        .padding()
+        .environmentObject(authViewModel)
     }
+    
 }
 
 #Preview {
