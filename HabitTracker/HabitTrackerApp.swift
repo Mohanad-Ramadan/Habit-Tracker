@@ -35,7 +35,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         // Passing the apikey from Secrets.xcconfig
         options.apiKey = apiKey
-        print(apiKey)
         // Configure Firebase
         FirebaseApp.configure(options: options)
         return true

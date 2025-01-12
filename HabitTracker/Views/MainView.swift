@@ -11,9 +11,9 @@ struct MainView: View {
     @StateObject var authViewModel = AuthViewModel()
     
     var body: some View {
-        NavigationStack {
+        Group {
             if authViewModel.userAuthenticated {
-                HomeView()
+                HabitsView()
             } else {
                 AuthenticationView()
             }
