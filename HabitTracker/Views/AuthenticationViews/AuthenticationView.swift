@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct AuthenticationView: View {
-    @EnvironmentObject var signViewModel: AuthViewModel
+    @StateObject var authViewModel = AuthViewModel()
     @State var animatelogeIn: Bool = true
     @State var animateSignUP: Bool = false
     @Binding var showSignInView: Bool
     // signView boolen computed property
-    var islogeInView: Bool { signViewModel.currentSignView == .logInView }
+    var islogeInView: Bool { authViewModel.currentSignView == .logInView }
     
     // body
     var body: some View {
@@ -42,6 +42,7 @@ struct AuthenticationView: View {
             }
             .animation(.smooth(), value: islogeInView)
         }
+        .environmentObject(authViewModel)
     }
     
 }

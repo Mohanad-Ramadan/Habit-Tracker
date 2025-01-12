@@ -13,33 +13,31 @@ final class AuthenticationManager {
     
     private init() {}
     
-    func getAuthenticatedUser() -> AuthDataResult? {
+    func getAuthenticatedUser() async throws -> UserData? {
         guard let currentUser = Auth.auth().currentUser else { return nil }
-        return AuthDataResult(user: currentUser)
+        // persist the user Data
+        return try await DataPersistenceManager.shared.getUser(user: UserData(user: currentUser))
     }
     
-    @discardableResult
-    func createNewUser(email: String, password: String, userName: String) async throws -> AuthDataResult {
+    func createNewUser(email: String, password: String, userName: String) async throws {
         do {
             let authResults = try await Auth.auth().createUser(withEmail: email, password: password)
-            
-            // Set display name
+            // set display name
             let changeRequest = authResults.user.createProfileChangeRequest()
             changeRequest.displayName = userName
             try await changeRequest.commitChanges()
-             
-            // return if needed (basicly we will not use the returned object)
-            return AuthDataResult(user: authResults.user)
+            // persist user Data
+            try DataPersistenceManager.shared.createUser(user: UserData(user: authResults.user))
         } catch {
             throw error
         }
     }
     
-    @discardableResult
-    func logeIn(email: String, password: String) async throws -> AuthDataResult {
+    func logeIn(email: String, password: String) async throws {
         do {
             let authResults = try await Auth.auth().signIn(withEmail: email, password: password)
-            return AuthDataResult(user: authResults.user)
+            // persist user Data
+            try DataPersistenceManager.shared.createUser(user: UserData(user: authResults.user))
         } catch {
             throw error
         }
@@ -48,8 +46,8 @@ final class AuthenticationManager {
     func signOut() async throws {
         do {
             try Auth.auth().signOut()
-        }
-        catch {
+            DataPersistenceManager.shared.removeUser()
+        } catch {
             throw error
         }
     }

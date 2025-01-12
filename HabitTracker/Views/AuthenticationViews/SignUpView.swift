@@ -89,7 +89,6 @@ struct SignUpView: View {
             do {
                 try await logeInViewModel.createNewUser()
                 showSignInView = false
-//                dismissScreen()
             } catch {
                 print(error)
             }

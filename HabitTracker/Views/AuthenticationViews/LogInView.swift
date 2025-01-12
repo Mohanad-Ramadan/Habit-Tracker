@@ -77,7 +77,6 @@ struct LogInView: View {
             do {
                 try await logeInViewModel.logIn()
                 showSignInView = false
-//                dismissScreen()
             } catch {
                 print(error.localizedDescription)
             }

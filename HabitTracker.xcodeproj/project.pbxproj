@@ -10,8 +10,10 @@
 		1423DF3C2D341D9100837B17 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423DF3B2D341D9100837B17 /* HabitViewModel.swift */; };
 		1423DF402D34226800837B17 /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423DF3F2D34226800837B17 /* FloatingButton.swift */; };
 		1423DF422D343D1600837B17 /* DayTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423DF412D343D1600837B17 /* DayTrackingView.swift */; };
+		1423DF442D34486A00837B17 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423DF432D34486A00837B17 /* DataPersistenceManager.swift */; };
+		1423DF462D344DE500837B17 /* HabitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1423DF452D344DE500837B17 /* HabitData.swift */; };
 		148E52FD2D3347190034581B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FC2D3347190034581B /* AuthViewModel.swift */; };
-		148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FE2D3347300034581B /* AuthDataResult.swift */; };
+		148E52FF2D3347300034581B /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FE2D3347300034581B /* UserData.swift */; };
 		148E53022D3347470034581B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53012D3347470034581B /* AuthenticationManager.swift */; };
 		148E53042D3348070034581B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53032D3348070034581B /* AuthenticationView.swift */; };
 		148E53062D3348270034581B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53052D3348270034581B /* LogInView.swift */; };
@@ -31,8 +33,10 @@
 		1423DF3B2D341D9100837B17 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		1423DF3F2D34226800837B17 /* FloatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingButton.swift; sourceTree = "<group>"; };
 		1423DF412D343D1600837B17 /* DayTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTrackingView.swift; sourceTree = "<group>"; };
+		1423DF432D34486A00837B17 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		1423DF452D344DE500837B17 /* HabitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitData.swift; sourceTree = "<group>"; };
 		148E52FC2D3347190034581B /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		148E52FE2D3347300034581B /* AuthDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResult.swift; sourceTree = "<group>"; };
+		148E52FE2D3347300034581B /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		148E53012D3347470034581B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		148E53032D3348070034581B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		148E53052D3348270034581B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
@@ -75,7 +79,8 @@
 		148E52FB2D3346520034581B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				148E52FE2D3347300034581B /* AuthDataResult.swift */,
+				148E52FE2D3347300034581B /* UserData.swift */,
+				1423DF452D344DE500837B17 /* HabitData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -84,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				148E53012D3347470034581B /* AuthenticationManager.swift */,
+				1423DF432D34486A00837B17 /* DataPersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -306,12 +312,14 @@
 			files = (
 				14FB6B162D333490001BB5FB /* MainView.swift in Sources */,
 				148E530F2D3348E00034581B /* HabitsView.swift in Sources */,
+				1423DF462D344DE500837B17 /* HabitData.swift in Sources */,
 				148E53062D3348270034581B /* LogInView.swift in Sources */,
+				1423DF442D34486A00837B17 /* DataPersistenceManager.swift in Sources */,
 				1423DF402D34226800837B17 /* FloatingButton.swift in Sources */,
 				14FB6B0A2D333462001BB5FB /* HabitTrackerApp.swift in Sources */,
 				148E530D2D33489D0034581B /* CSInputField.swift in Sources */,
 				1423DF3C2D341D9100837B17 /* HabitViewModel.swift in Sources */,
-				148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */,
+				148E52FF2D3347300034581B /* UserData.swift in Sources */,
 				1423DF422D343D1600837B17 /* DayTrackingView.swift in Sources */,
 				148E53082D3348310034581B /* SignUpView.swift in Sources */,
 				148E53042D3348070034581B /* AuthenticationView.swift in Sources */,

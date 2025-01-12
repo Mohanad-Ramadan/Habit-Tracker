@@ -9,36 +9,33 @@
 import SwiftUI
 
 struct HabitsView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @Environment(\.dismiss) var dismissScreen
+    @StateObject var viewModel: HabitViewModel = HabitViewModel()
+    @State var presentCreateHabitView: Bool = false
     @Binding var showSignInView: Bool
-    
-    @StateObject var habitsViewModel: HabitViewModel = HabitViewModel()
-    @State var presentHabitCreate: Bool = false
     
     var body: some View {
         NavigationStack {
-            Group {
-                if habitsViewModel.habits.isEmpty {
+            ZStack {
+                if viewModel.habits.isEmpty {
                     Text("Empty list \(Image(systemName: "face.dashed"))")
                         .foregroundStyle(.gray)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .overlay(alignment: .bottomTrailing) {
                             FloatingButton(
-                                presentHabitCreate: $presentHabitCreate,
+                                presentHabitCreate: $presentCreateHabitView,
                                 animate: true
                             )
                         }
                 } else {
                     List {
-                        ForEach(habitsViewModel.habits, id: \.self){ item in
-                            Text(item)
+                        ForEach(viewModel.habits, id: \.name){ habit in
+                            Text(habit.name)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(alignment: .bottomTrailing) {
                         FloatingButton(
-                            presentHabitCreate: $presentHabitCreate,
+                            presentHabitCreate: $presentCreateHabitView,
                             animate: false
                         )
                     }
@@ -53,8 +50,17 @@ struct HabitsView: View {
                     }
                 }
             }
+            .fullScreenCover(isPresented: $presentCreateHabitView) {
+                Button("create habit") {
+                    viewModel.addHabit(habit: Habit(name: "\(Int.random(in: 1...100))", goal: 5, progress: 0))
+                    presentCreateHabitView.toggle()
+                }
+                .frame(width: 100, height: 100)
+            }
         }
-        
+        .task {
+            try? await viewModel.loadUserHabits()
+        }
     }
     
     // signOut method
@@ -63,7 +69,6 @@ struct HabitsView: View {
             do {
                 try await AuthenticationManager.shared.signOut()
                 showSignInView = true
-//                dismissScreen()
             } catch {
                 print(error)
             }
@@ -74,6 +79,6 @@ struct HabitsView: View {
 
 #Preview {
     NavigationStack {
-        HabitsView(showSignInView: .constant(false), habitsViewModel: HabitViewModel())
+        HabitsView(viewModel: HabitViewModel(), showSignInView: .constant(false))
     }
 }
