@@ -11,7 +11,7 @@
 		148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E52FE2D3347300034581B /* AuthDataResult.swift */; };
 		148E53022D3347470034581B /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53012D3347470034581B /* AuthenticationManager.swift */; };
 		148E53042D3348070034581B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53032D3348070034581B /* AuthenticationView.swift */; };
-		148E53062D3348270034581B /* LogeInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53052D3348270034581B /* LogeInView.swift */; };
+		148E53062D3348270034581B /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53052D3348270034581B /* LogInView.swift */; };
 		148E53082D3348310034581B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E53072D3348310034581B /* SignUpView.swift */; };
 		148E530D2D33489D0034581B /* CSInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E530C2D33489D0034581B /* CSInputField.swift */; };
 		148E530F2D3348E00034581B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148E530E2D3348E00034581B /* HomeView.swift */; };
@@ -29,7 +29,7 @@
 		148E52FE2D3347300034581B /* AuthDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResult.swift; sourceTree = "<group>"; };
 		148E53012D3347470034581B /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		148E53032D3348070034581B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
-		148E53052D3348270034581B /* LogeInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogeInView.swift; sourceTree = "<group>"; };
+		148E53052D3348270034581B /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		148E53072D3348310034581B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		148E530C2D33489D0034581B /* CSInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSInputField.swift; sourceTree = "<group>"; };
 		148E530E2D3348E00034581B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				148E53032D3348070034581B /* AuthenticationView.swift */,
-				148E53052D3348270034581B /* LogeInView.swift */,
+				148E53052D3348270034581B /* LogInView.swift */,
 				148E53072D3348310034581B /* SignUpView.swift */,
 			);
 			path = AuthenticationViews;
@@ -267,6 +267,7 @@
 		};
 		E51E37DA0FC80B4069C05497 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -296,7 +297,7 @@
 			files = (
 				14FB6B162D333490001BB5FB /* MainView.swift in Sources */,
 				148E530F2D3348E00034581B /* HomeView.swift in Sources */,
-				148E53062D3348270034581B /* LogeInView.swift in Sources */,
+				148E53062D3348270034581B /* LogInView.swift in Sources */,
 				14FB6B0A2D333462001BB5FB /* HabitTrackerApp.swift in Sources */,
 				148E530D2D33489D0034581B /* CSInputField.swift in Sources */,
 				148E52FF2D3347300034581B /* AuthDataResult.swift in Sources */,

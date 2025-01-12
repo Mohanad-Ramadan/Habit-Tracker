@@ -13,7 +13,7 @@ struct AuthenticationView: View {
     @State var animatelogeIn: Bool = true
     @State var animateSignUP: Bool = false
     // signView boolen computed property
-    var islogeInView: Bool { signViewModel.currentSignView == .logeInView }
+    var islogeInView: Bool { signViewModel.currentSignView == .logInView }
     
     // body
     var body: some View {
@@ -23,7 +23,7 @@ struct AuthenticationView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.orange, Color.white]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 
-                LogeInView()
+                LogInView()
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(radius: 10)

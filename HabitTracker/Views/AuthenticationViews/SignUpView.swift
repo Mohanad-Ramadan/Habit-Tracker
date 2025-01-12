@@ -66,7 +66,7 @@ struct SignUpView: View {
                     .fontWeight(.bold)
                 
                 Button {
-                    logeInViewModel.currentSignView = .logeInView
+                    logeInViewModel.currentSignView = .logInView
                 } label: {
                     Text("Log in")
                         .foregroundColor(.blue)

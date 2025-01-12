@@ -1,5 +1,5 @@
 //
-//  LogeInView.swift
+//  LogInView.swift
 //  HabitTracker
 //
 //  Created by Mohanad Ramdan on 12/01/2025.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct LogeInView: View {
+struct LogInView: View {
     @EnvironmentObject private var logeInViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
     
@@ -74,7 +74,7 @@ struct LogeInView: View {
     func authecticateUser() {
         Task {
             do {
-                try await logeInViewModel.logeIn()
+                try await logeInViewModel.logIn()
                 dismissScreen()
             } catch {
                 print(error.localizedDescription)
@@ -89,7 +89,7 @@ struct LogeInView: View {
 #Preview {
     NavigationStack {
         let authMock = AuthViewModel()
-        LogeInView()
+        LogInView()
             .environmentObject(authMock)
     }
     

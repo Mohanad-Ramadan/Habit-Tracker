@@ -10,11 +10,15 @@ import Foundation
 
 @MainActor
 final class AuthViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
-    @Published var userName = ""
+    @Published var email = String()
+    @Published var password = String()
+    @Published var userName = String()
     @Published var userAuthenticated: Bool
-    @Published var currentSignView: SignInViewType = .logeInView
+    @Published var currentSignView: SignInViewType = .logInView {
+        didSet {
+            password = String()
+        }
+    }
     
 
     init() {
@@ -22,7 +26,7 @@ final class AuthViewModel: ObservableObject {
         userAuthenticated = currentUser != nil ? true: false
     }
     
-    func logeIn() async throws {
+    func logIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("Email or Password is empty")
             return
@@ -46,6 +50,6 @@ final class AuthViewModel: ObservableObject {
 
 //MARK: - SignIn Types
 enum SignInViewType {
-    case logeInView, signUpView
+    case logInView, signUpView
 }
 
