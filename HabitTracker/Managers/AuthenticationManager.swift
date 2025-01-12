@@ -27,7 +27,7 @@ final class AuthenticationManager {
             let changeRequest = authResults.user.createProfileChangeRequest()
             changeRequest.displayName = userName
             try await changeRequest.commitChanges()
-            
+             
             // return if needed (basicly we will not use the returned object)
             return AuthDataResult(user: authResults.user)
         } catch {

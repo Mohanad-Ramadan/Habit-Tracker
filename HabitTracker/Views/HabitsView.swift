@@ -11,6 +11,7 @@ import SwiftUI
 struct HabitsView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
+    @Binding var showSignInView: Bool
     
     @StateObject var habitsViewModel: HabitViewModel = HabitViewModel()
     @State var presentHabitCreate: Bool = false
@@ -61,8 +62,8 @@ struct HabitsView: View {
         Task {
             do {
                 try await AuthenticationManager.shared.signOut()
-                authViewModel.userAuthenticated = false
-                dismissScreen()
+                showSignInView = true
+//                dismissScreen()
             } catch {
                 print(error)
             }
@@ -73,6 +74,6 @@ struct HabitsView: View {
 
 #Preview {
     NavigationStack {
-        HabitsView(habitsViewModel: HabitViewModel())
+        HabitsView(showSignInView: .constant(false), habitsViewModel: HabitViewModel())
     }
 }

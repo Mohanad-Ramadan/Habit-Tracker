@@ -11,6 +11,7 @@ import SwiftUI
 struct LogInView: View {
     @EnvironmentObject private var logeInViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
+    @Binding var showSignInView: Bool
     
     var body: some View {
         VStack(spacing: 0) {
@@ -75,7 +76,8 @@ struct LogInView: View {
         Task {
             do {
                 try await logeInViewModel.logIn()
-                dismissScreen()
+                showSignInView = false
+//                dismissScreen()
             } catch {
                 print(error.localizedDescription)
             }
@@ -88,9 +90,7 @@ struct LogInView: View {
 
 #Preview {
     NavigationStack {
-        let authMock = AuthViewModel()
-        LogInView()
-            .environmentObject(authMock)
+        LogInView(showSignInView: .constant(true))
     }
     
 }

@@ -12,6 +12,7 @@ struct AuthenticationView: View {
     @EnvironmentObject var signViewModel: AuthViewModel
     @State var animatelogeIn: Bool = true
     @State var animateSignUP: Bool = false
+    @Binding var showSignInView: Bool
     // signView boolen computed property
     var islogeInView: Bool { signViewModel.currentSignView == .logInView }
     
@@ -23,14 +24,14 @@ struct AuthenticationView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.orange, Color.white]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 
-                LogInView()
+                LogInView(showSignInView: $showSignInView)
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(radius: 10)
                     .offset(x: islogeInView ? 0:-500)
                     .padding()
                 
-                SignUpView()
+                SignUpView(showSignInView: $showSignInView)
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(radius: 10)
@@ -48,8 +49,6 @@ struct AuthenticationView: View {
 
 #Preview {
     NavigationStack {
-        let authMock = AuthViewModel()
-        AuthenticationView()
-            .environmentObject(authMock)
+        AuthenticationView(showSignInView: .constant(true))
     }
 }
