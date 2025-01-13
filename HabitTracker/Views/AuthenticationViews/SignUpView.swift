@@ -28,15 +28,31 @@ struct SignUpView: View {
             .padding(.bottom, 30)
             
             //MARK: - User Name
-            CSInputField(isSecureField: false, fieldTitle: "Full Name", placeHolder: .name, input: $logeInViewModel.userName)
+            CSInputField(
+                isSecureField: false,
+                fieldTitle: "Full Name",
+                placeHolder: "ex: Harry Potter",
+                input: $logeInViewModel.userName
+            )
             
             
             //MARK: - Email Text Feild
-            CSInputField(isSecureField: false, fieldTitle: "Email Address", placeHolder: .email, input: $logeInViewModel.email)
+            CSInputField(
+                isSecureField: false,
+                fieldTitle: "Email Address",
+                placeHolder: "example@gmail.com",
+                input: $logeInViewModel.email,
+                keyboardType: .emailAddress
+            )
             
             
             //MARK: - Password Feild
-            CSInputField(isSecureField: true, fieldTitle: "Password", placeHolder: .password, input: $logeInViewModel.password)
+            CSInputField(
+                isSecureField: true,
+                fieldTitle: "Password",
+                placeHolder: "enter a password",
+                input: $logeInViewModel.password
+            )
             
             //MARK: - SignUp Button
             Button {

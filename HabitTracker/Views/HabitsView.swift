@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HabitsView: View {
     @StateObject var viewModel: HabitViewModel = HabitViewModel()
-    @State var presentCreateHabitView: Bool = false
+    @State var showAddHabitView: Bool = false
     @Binding var showSignInView: Bool
     
     var body: some View {
@@ -22,7 +22,7 @@ struct HabitsView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .overlay(alignment: .bottomTrailing) {
                             FloatingButton(
-                                presentHabitCreate: $presentCreateHabitView,
+                                presentHabitCreate: $showAddHabitView,
                                 animate: true
                             )
                         }
@@ -35,7 +35,7 @@ struct HabitsView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .overlay(alignment: .bottomTrailing) {
                         FloatingButton(
-                            presentHabitCreate: $presentCreateHabitView,
+                            presentHabitCreate: $showAddHabitView,
                             animate: false
                         )
                     }
@@ -48,19 +48,16 @@ struct HabitsView: View {
                     Button("logout") {
                         signOut()
                     }
+                    .disabled(showAddHabitView)
                 }
             }
-            .fullScreenCover(isPresented: $presentCreateHabitView) {
-                Button("create habit") {
-                    viewModel.addHabit(habit: Habit(name: "\(Int.random(in: 1...100))", goal: 5, progress: 0))
-                    presentCreateHabitView.toggle()
-                }
-                .frame(width: 100, height: 100)
-            }
+            .overlay(showAddHabitView ? AddHabitView(dismissView: $showAddHabitView) : nil)
+            .animation(.linear, value: showAddHabitView)
         }
         .task {
             try? await viewModel.loadUserHabits()
         }
+        .environmentObject(viewModel)
     }
     
     // signOut method
@@ -76,6 +73,7 @@ struct HabitsView: View {
     }
     
 }
+
 
 #Preview {
     NavigationStack {

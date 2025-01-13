@@ -18,7 +18,7 @@ final class DataPersistenceManager {
     
     // we are using the user collection to write or read all the user data
     private let userDB = Firestore.firestore().collection("users")
-    private var currentUser: UserData?
+    var currentUser: UserData?
     
     private init() {}
     

@@ -7,18 +7,12 @@
 
 import SwiftUI
 
-enum TextFieldHolder: String {
-    case email = "example@gmail.com"
-    case password = "enter a password"
-    case name = "ex: Harry Potter"
-}
-
 struct CSInputField: View {
-    
     var isSecureField: Bool
     @State var fieldTitle: String
-    @State var placeHolder: TextFieldHolder
+    @State var placeHolder: String
     @Binding var input: String
+    @State var keyboardType: UIKeyboardType = .default
     
     var body: some View {
         VStack(spacing: 5) {
@@ -29,19 +23,22 @@ struct CSInputField: View {
                 .foregroundColor(.black.opacity(0.7))
                 .padding(.leading, 10)
             if isSecureField {
-                SecureField(placeHolder.rawValue, text: $input)
+                SecureField(placeHolder, text: $input)
                     .padding()
                     .background(Color(.systemGray6))
+                    .frame(height: 50)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
+                    .keyboardType(.default)
             } else {
-                TextField(placeHolder.rawValue, text: $input)
+                TextField(placeHolder, text: $input)
                     .autocapitalization(.none)
-                    .keyboardType(.emailAddress)
                     .padding()
                     .background(Color(.systemGray6))
+                    .frame(height: 50)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
+                    .keyboardType(keyboardType)
             }
         }
         .padding(.bottom, 15)
@@ -49,5 +46,5 @@ struct CSInputField: View {
 }
 
 #Preview {
-    CSInputField(isSecureField: false, fieldTitle: "Email Address", placeHolder: .email, input: .constant("Hi"))
+    CSInputField(isSecureField: false, fieldTitle: "Email Address", placeHolder: "Place Holder", input: .constant("Hi"))
 }
