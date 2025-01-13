@@ -23,6 +23,7 @@ A SwiftUI-based iOS application that helps users track and maintain their daily 
 - Separate views for active and completed habits
 - Daily progress overview
 ![ScreenShot](/ScreenShots/CompletedHabit.png)
+![ScreenShot](/ScreenShots/MainScreen.png)
 
 ### User Interface
 - Clean, intuitive design
