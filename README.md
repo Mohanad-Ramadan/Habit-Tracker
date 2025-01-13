@@ -8,6 +8,7 @@ A SwiftUI-based iOS application that helps users track and maintain their daily 
 - Email-based user registration and login
 - Secure authentication using Firebase
 - Persistent login state
+  
 ![ScreenShot](/ScreenShots/Login.png)
 ![ScreenShot](/ScreenShots/Signup.png)
 
@@ -16,12 +17,14 @@ A SwiftUI-based iOS application that helps users track and maintain their daily 
 - Track progress for each habit
 - Delete unwanted habits
 - Automatic completion marking when goal is reached
+  
 ![ScreenShot](/ScreenShots/RemoveHabit.png)
 
 ### Progress Tracking
 - Visual progress indicators for each habit
 - Separate views for active and completed habits
 - Daily progress overview
+  
 ![ScreenShot](/ScreenShots/CompletedHabit.png)
 ![ScreenShot](/ScreenShots/MainScreen.png)
 
@@ -30,6 +33,7 @@ A SwiftUI-based iOS application that helps users track and maintain their daily 
 - Animated floating action button
 - Toast notifications for user feedback
 - Keyboard-aware forms
+  
 ![ScreenShot](/ScreenShots/AddHabit.png)
 ![ScreenShot](/ScreenShots/EmptyList.png)
 
