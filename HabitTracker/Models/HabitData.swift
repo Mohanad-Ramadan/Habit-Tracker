@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Habit: Codable {
+struct Habit: Codable, Identifiable {
+    var id: String = UUID().uuidString
     let name: String
     let goal: Int
     var progress: Int
+    var isCompleted: Bool
 }

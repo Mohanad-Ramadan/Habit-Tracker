@@ -21,15 +21,35 @@ struct HabitsListView: View {
                     .fontWeight(.semibold)
             }
             // habits list section
-            Section {
-                ForEach(viewModel.habits, id: \.name) { habit in
-                    HabitProgressView(habit: habit)
-                        .listRowInsets(EdgeInsets())
+            if !viewModel.activeHabits.isEmpty {
+                Section {
+                    ForEach(viewModel.activeHabits) { habit in
+                        HabitProgressView(habit: habit)
+                            .listRowInsets(EdgeInsets())
+                    }
+                    .onDelete { indexSet in
+                        viewModel.removeHabit(at: indexSet, from: .active)
+                    }
+                } header: {
+                    Text("Active Habits")
+                        .fontWeight(.semibold)
                 }
-                .onDelete(perform: viewModel.removeHabit)
-            } header: {
-                Text("Habits List")
-                    .fontWeight(.semibold)
+            }
+            
+            // completed list section
+            if !viewModel.completedHabits.isEmpty {
+                Section {
+                    ForEach(viewModel.completedHabits) { habit in
+                        HabitProgressView(habit: habit, isCompletedView: true)
+                            .listRowInsets(EdgeInsets())
+                    }
+                    .onDelete { indexSet in
+                        viewModel.removeHabit(at: indexSet, from: .completed)
+                    }
+                } header: {
+                    Text("Completed Habits")
+                        .fontWeight(.semibold)
+                }
             }
         }
         .background(.orange.opacity(0.1))

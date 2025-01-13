@@ -12,6 +12,14 @@ final class HabitViewModel: ObservableObject {
     private let userDataManager = DataPersistenceManager.shared
     @Published private(set) var habits: [Habit] = []
     
+    var activeHabits: [Habit] {
+        habits.filter { !$0.isCompleted }
+    }
+    
+    var completedHabits: [Habit] {
+        habits.filter { $0.isCompleted }
+    }
+    
     func loadUserHabits() async throws {
         let user = try await AuthenticationManager.shared.getAuthenticatedUser()
         habits = user?.habits ?? []
@@ -24,10 +32,13 @@ final class HabitViewModel: ObservableObject {
         }
     }
     
-    func removeHabit(at indexSet: IndexSet) {
+    func removeHabit(at indexSet: IndexSet, from habitType: HabitType) {
         Task {
-            guard let singleIndex = indexSet.first else { return }
-            let habitToRemove = habits[singleIndex]
+            let habitsToRemoveFrom = habitType == .active ? activeHabits : completedHabits
+            guard let singleIndex = indexSet.first,
+                  singleIndex < habitsToRemoveFrom.count else { return }
+            
+            let habitToRemove = habitsToRemoveFrom[singleIndex]
             try await userDataManager.removeHabit(habit: habitToRemove)
             self.habits = try await userDataManager.getHabits()
         }
@@ -35,15 +46,28 @@ final class HabitViewModel: ObservableObject {
     
     func increaseHabitProgress(habit: Habit) {
         Task {
-            // aport if progress reached goal
+            // abort if progress reached goal
             guard habit.progress < habit.goal else { return }
+            // update habit data
+            let newProgress = habit.progress + 1
+            let isHabitCompleted = newProgress == habit.goal
             // remove the habit
             try await userDataManager.removeHabit(habit: habit)
             // create the habit with the updated progress
-            let updatedHabit = Habit(name: habit.name, goal: habit.goal, progress: habit.progress + 1)
+            let updatedHabit = Habit(
+                name: habit.name,
+                goal: habit.goal,
+                progress: newProgress,
+                isCompleted: isHabitCompleted
+            )
             try await userDataManager.createHabit(habit: updatedHabit)
+            // fetch the new habits
             self.habits = try await userDataManager.getHabits()
         }
     }
     
+    enum HabitType {
+        case active
+        case completed
+    }
 }

@@ -83,7 +83,14 @@ struct AddHabitView: View {
                 return
             }
             // add habit to dataBase and dismiss view
-            viewModel.addHabit(habit: Habit(name: habitName, goal: habitGoalMapped, progress: 0))
+            viewModel.addHabit(
+                habit: Habit(
+                    name: habitName,
+                    goal: habitGoalMapped,
+                    progress: 0,
+                    isCompleted: false
+                )
+            )
             dismissView.toggle()
         }
     }
