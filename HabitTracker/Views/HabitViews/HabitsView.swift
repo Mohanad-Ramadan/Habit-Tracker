@@ -13,10 +13,13 @@ struct HabitsView: View {
     @StateObject var viewModel: HabitViewModel = HabitViewModel()
     @State var showAddHabitView: Bool = false
     @Binding var showSignInView: Bool
+    @State private var loading: Bool = false
     @State private var showToast: (
         active: Bool,
         message: String
     ) = (false, "Error")
+    
+    let loadingSpinner = AlertToast(type: .loading)
     
     var body: some View {
         NavigationStack {
@@ -51,7 +54,14 @@ struct HabitsView: View {
                 title: "\(showToast.message)"
             )
         }
+        .toast(isPresenting: $loading) {
+            loadingSpinner
+        }
         .task {
+            // handle loading
+            loading = true
+            defer { loading = false }
+            // handle loading user habits
             do {
                 try await viewModel.loadUserHabits()
             } catch {
