@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct HabitProgressView: View {
     @EnvironmentObject var viewModel: HabitViewModel
+    @Binding var showToast: (active: Bool, habitName: String)
     
     // no need to bind habit object
     // cause the parent view already rendering it by default for his changes
@@ -43,7 +45,9 @@ struct HabitProgressView: View {
             }
             
             Button("") {
-                viewModel.increaseHabitProgress(habit: habit)
+                viewModel.increaseHabitProgress(habit: habit) {
+                    showToast = (true, habit.name)
+                }
             }
             .disabled(isCompletedView)
         }
@@ -53,5 +57,5 @@ struct HabitProgressView: View {
 }
 
 #Preview {
-    HabitProgressView(habit: Habit(name: "Drink water", goal: 5, progress: 2, isCompleted: true))
+    HabitProgressView(showToast: .constant((false, "")), habit: Habit(name: "Drink water", goal: 5, progress: 2, isCompleted: true))
 }

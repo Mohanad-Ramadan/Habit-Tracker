@@ -20,6 +20,7 @@ struct TodayProgressHeaderView: View {
     }
     
     let gradient = Gradient(colors: [.gray, .orange])
+    let completedGradient: Gradient = Gradient(colors: [.green])
     
     var body: some View {
         Gauge(value: progress, in: minValue...maxValue) {
@@ -28,7 +29,7 @@ struct TodayProgressHeaderView: View {
             Text(progress, format: .number)
                 .foregroundColor(.black)
         }
-        .tint(gradient)
+        .tint(progress == maxValue ? completedGradient : gradient)
         .gaugeStyle(.accessoryCircular)
         .frame(maxWidth: .infinity)
         .scaleEffect(1.5)

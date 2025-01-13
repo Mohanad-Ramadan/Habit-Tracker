@@ -5,6 +5,7 @@ target 'HabitTracker' do
   
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'AlertToast'
 
 end
 

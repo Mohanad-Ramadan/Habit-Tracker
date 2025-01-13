@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct HabitsListView: View {
     @EnvironmentObject var viewModel: HabitViewModel
     @Binding var showAddHabitView: Bool
+    
+    @State private var showToast: (
+        active: Bool,
+        habitName: String
+    ) = (false, "habit")
+    @State private var showRemoveToast = false
     
     var body: some View {
         List {
@@ -20,15 +27,20 @@ struct HabitsListView: View {
                 Text("Today's Progress")
                     .fontWeight(.semibold)
             }
+            
             // habits list section
             if !viewModel.activeHabits.isEmpty {
                 Section {
                     ForEach(viewModel.activeHabits) { habit in
-                        HabitProgressView(habit: habit)
-                            .listRowInsets(EdgeInsets())
+                        HabitProgressView(
+                            showToast: $showToast,
+                            habit: habit
+                        )
+                        .listRowInsets(EdgeInsets())
                     }
                     .onDelete { indexSet in
                         viewModel.removeHabit(at: indexSet, from: .active)
+                        showRemoveToast.toggle()
                     }
                 } header: {
                     Text("Active Habits")
@@ -40,11 +52,16 @@ struct HabitsListView: View {
             if !viewModel.completedHabits.isEmpty {
                 Section {
                     ForEach(viewModel.completedHabits) { habit in
-                        HabitProgressView(habit: habit, isCompletedView: true)
-                            .listRowInsets(EdgeInsets())
+                        HabitProgressView(
+                            showToast: .constant((false, "")),
+                            habit: habit,
+                            isCompletedView: true
+                        )
+                        .listRowInsets(EdgeInsets())
                     }
                     .onDelete { indexSet in
                         viewModel.removeHabit(at: indexSet, from: .completed)
+                        showRemoveToast.toggle()
                     }
                 } header: {
                     Text("Completed Habits")
@@ -59,6 +76,18 @@ struct HabitsListView: View {
             FloatingButton(
                 presentHabitCreate: $showAddHabitView,
                 animate: false
+            )
+        }
+        .toast(isPresenting: $showToast.active) {
+            AlertToast(
+                type: .complete(.green),
+                title: "You Completed '\(showToast.habitName)' for today!"
+            )
+        }
+        .toast(isPresenting: $showRemoveToast) {
+            AlertToast(
+                type: .error(.red),
+                title: "Habit removed!"
             )
         }
     }

@@ -44,7 +44,7 @@ final class HabitViewModel: ObservableObject {
         }
     }
     
-    func increaseHabitProgress(habit: Habit) {
+    func increaseHabitProgress(habit: Habit, completion: (() -> Void)? = nil) {
         Task {
             // abort if progress reached goal
             guard habit.progress < habit.goal else { return }
@@ -63,11 +63,17 @@ final class HabitViewModel: ObservableObject {
             try await userDataManager.createHabit(habit: updatedHabit)
             // fetch the new habits
             self.habits = try await userDataManager.getHabits()
+            // 
+            if isHabitCompleted {
+                completion?()
+            }
         }
     }
+    
     
     enum HabitType {
         case active
         case completed
     }
+    
 }
