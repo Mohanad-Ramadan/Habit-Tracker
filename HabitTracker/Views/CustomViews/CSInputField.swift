@@ -33,8 +33,8 @@ struct CSInputField: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
                     .keyboardType(.default)
-                    .onChange(of: input) { _, newValue in
-                        let sanitizedInput = newValue.sanitizeInput(charactersLimit: charactersLimit)
+                    .onChange(of: input) { value in
+                        let sanitizedInput = value.sanitizeInput(charactersLimit: charactersLimit)
                         input = sanitizedInput
                     }
             } else {
@@ -46,8 +46,8 @@ struct CSInputField: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
                     .keyboardType(keyboardType)
-                    .onChange(of: input) { _, newValue in
-                        let sanitizedInput = newValue.sanitizeInput(charactersLimit: charactersLimit, sanitizeDots: shouldSanitizeDots)
+                    .onChange(of: input) { value in
+                        let sanitizedInput = value.sanitizeInput(charactersLimit: charactersLimit, sanitizeDots: shouldSanitizeDots)
                         input = sanitizedInput
                     }
             }
