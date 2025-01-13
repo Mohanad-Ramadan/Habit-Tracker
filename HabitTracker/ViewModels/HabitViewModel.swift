@@ -24,17 +24,26 @@ final class HabitViewModel: ObservableObject {
         }
     }
     
-    func removeHabit(habit: Habit) {
+    func removeHabit(at indexSet: IndexSet) {
         Task {
-            try await userDataManager.removeHabit(habit: habit)
+            guard let singleIndex = indexSet.first else { return }
+            let habitToRemove = habits[singleIndex]
+            try await userDataManager.removeHabit(habit: habitToRemove)
             self.habits = try await userDataManager.getHabits()
         }
     }
     
-    func increaseHabitProgress(habit: Habit, by : Int) {
+    func increaseHabitProgress(habit: Habit) {
         Task {
-            try await userDataManager.updateHabitProgress(habit: habit, newProgress: 1)
+            // aport if progress reached goal
+            guard habit.progress < habit.goal else { return }
+            // remove the habit
+            try await userDataManager.removeHabit(habit: habit)
+            // create the habit with the updated progress
+            let updatedHabit = Habit(name: habit.name, goal: habit.goal, progress: habit.progress + 1)
+            try await userDataManager.createHabit(habit: updatedHabit)
             self.habits = try await userDataManager.getHabits()
         }
     }
+    
 }

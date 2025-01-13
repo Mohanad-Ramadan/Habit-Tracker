@@ -49,7 +49,8 @@ final class DataPersistenceManager {
         guard let user = currentUser else { return [] }
         let updatedUser = try await getUser(user: user)
         currentUser = updatedUser
-        return updatedUser.habits ?? []
+        let habitsSorted = updatedUser.habits?.sorted { $0.progress > $1.progress } ?? []
+        return habitsSorted
     }
     
     func createHabit(habit: Habit) async throws {
@@ -67,22 +68,6 @@ final class DataPersistenceManager {
             "habits": FieldValue.arrayRemove([try encoder.encode(habit)])
         ])
     }
-    
-    func updateHabitProgress(habit: Habit, newProgress: Int) async throws {
-        guard let user = currentUser else { return }
-        
-//        // Find habit index in habits array
-//        try await userDocument(user: user).updateData([
-//            "habits": FieldValue.arrayRemove([try encoder.encode(habit)])
-//        ])
-        
-        // Update the specific habit's progress using array index
-        try await userDocument(user: user).updateData([
-            "habits.\(String(describing: index)).progress": newProgress
-        ])
-    }
-    
-    
     
 }
 
