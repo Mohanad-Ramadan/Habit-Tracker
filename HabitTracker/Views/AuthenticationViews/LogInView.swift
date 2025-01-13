@@ -12,6 +12,7 @@ struct LogInView: View {
     @EnvironmentObject private var logeInViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
     @Binding var showSignInView: Bool
+    @FocusState private var fieldInFocus: FocusedField?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,13 +30,14 @@ struct LogInView: View {
             
             //MARK: - Email Text Feild
             CSInputField(
+                shouldSanitizeDots: false,
                 isSecureField: false,
                 fieldTitle: "Email Address",
                 placeHolder: "example@gmail.com",
                 input: $logeInViewModel.email,
                 keyboardType: .emailAddress
             )
-            
+            .onSubmit { fieldInFocus = .password }
 
             //MARK: - Password Feild
             CSInputField(
@@ -44,7 +46,7 @@ struct LogInView: View {
                 placeHolder: "enter a password",
                 input: $logeInViewModel.password
             )
-            
+            .focused($fieldInFocus, equals: .password)
             
             //MARK: - logeIn Button
             Button {
@@ -94,6 +96,10 @@ struct LogInView: View {
         }
     }
     
+    // field focus enum
+    enum FocusedField: Hashable {
+        case email, password
+    }
 }
 
 

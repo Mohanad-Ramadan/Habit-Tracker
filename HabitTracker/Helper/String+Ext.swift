@@ -10,7 +10,7 @@ import Foundation
 extension String {
     
     // map an string for better textfield UX
-    func sanitizeInput(charactersLimit: Int) -> String {
+    func sanitizeInput(charactersLimit: Int, sanitizeDots: Bool = true) -> String {
         // If the input is empty or contains only white spaces, return an empty string
         if self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             return ""
@@ -27,7 +27,9 @@ extension String {
             sanitized += " "
         }
         // remove '.' from the input
-        sanitized = sanitized.trimmingCharacters(in: CharacterSet(charactersIn: "."))
+        if sanitizeDots {
+            sanitized = sanitized.trimmingCharacters(in: CharacterSet(charactersIn: "."))
+        }
         // prefix the sanitized string to characters limit
         return String(sanitized.prefix(charactersLimit))
     }

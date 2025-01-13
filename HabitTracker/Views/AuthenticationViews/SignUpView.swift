@@ -12,6 +12,7 @@ struct SignUpView: View {
     @EnvironmentObject private var logeInViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
     @Binding var showSignInView: Bool
+    @FocusState private var fieldInFocus: FocusedField?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -34,17 +35,19 @@ struct SignUpView: View {
                 placeHolder: "ex: Harry Potter",
                 input: $logeInViewModel.userName
             )
-            
+            .onSubmit { fieldInFocus = .email }
             
             //MARK: - Email Text Feild
             CSInputField(
+                shouldSanitizeDots: false,
                 isSecureField: false,
                 fieldTitle: "Email Address",
                 placeHolder: "example@gmail.com",
                 input: $logeInViewModel.email,
                 keyboardType: .emailAddress
             )
-            
+            .focused($fieldInFocus, equals: .email)
+            .onSubmit { fieldInFocus = .password }
             
             //MARK: - Password Feild
             CSInputField(
@@ -53,6 +56,7 @@ struct SignUpView: View {
                 placeHolder: "enter a password",
                 input: $logeInViewModel.password
             )
+            .focused($fieldInFocus, equals: .password)
             
             //MARK: - SignUp Button
             Button {
@@ -71,10 +75,11 @@ struct SignUpView: View {
             
             //MARK: - Terms and Privacy
             Text("By clicking on sign up, you have been agreed to our terms and conditions")
-                .foregroundColor(.black)
+                .foregroundColor(.gray)
                 .font(.footnote)
-                .fontWeight(.ultraLight)
+                .padding(.horizontal)
                 .padding(.bottom, 20)
+                .multilineTextAlignment(.center)
             
             HStack {
                 Text("Already have an account?")
@@ -110,7 +115,14 @@ struct SignUpView: View {
             }
         }
     }
+    
+    // field focus enum
+    enum FocusedField: Hashable {
+        case userName, email, password
+    }
 }
+
+
 
 #Preview {
     NavigationStack {

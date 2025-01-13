@@ -37,6 +37,12 @@ struct HabitProgressView: View {
                 } currentValueLabel: {
                     Text(Double(habit.progress), format: .number)
                         .foregroundColor(.gray)
+                } minimumValueLabel: {
+                    Text("\(Int(habit.progress))")
+                        .foregroundColor(.gray)
+                } maximumValueLabel: {
+                    Text("\(Int(maxValue))")
+                        .foregroundColor(.gray)
                 }
                 .tint(isCompletedView ? completedGradient : gradient)
                 .opacity(isCompletedView ? 0.8 : 1)

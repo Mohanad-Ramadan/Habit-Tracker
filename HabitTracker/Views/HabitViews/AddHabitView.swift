@@ -10,6 +10,7 @@ import SwiftUI
 //MARK: - AddHabitView
 struct AddHabitView: View {
     @Binding var dismissView: Bool
+    
     let viewWidth = UIScreen.main.bounds.width * 0.8
     
     var body: some View {
@@ -28,12 +29,12 @@ struct AddHabitView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black.opacity(0.5))
-        .ignoresSafeArea()
     }
     
     //MARK: - Add Habit Contianer
     // break down the view so swift could compile the could
     struct ContianerView: View {
+        @FocusState private var fieldInFocus: FocusedField?
         @EnvironmentObject var viewModel: HabitViewModel
         @Binding var dismissView: Bool
         
@@ -43,8 +44,6 @@ struct AddHabitView: View {
         @State var isGoalValid: Bool = true
         @State var isNameValid: Bool = true
         
-        let charactersLimit = 25
-        
         var body: some View {
             VStack(spacing: 5) {
                 CSInputField(
@@ -53,10 +52,8 @@ struct AddHabitView: View {
                     placeHolder: "ex: Drink Water",
                     input: $habitName
                 )
-                .onChange(of: habitName) { _, newValue in
-                    let sanitizedValue = newValue.sanitizeInput(charactersLimit: charactersLimit)
-                    habitName = sanitizedValue
-                }
+                .onSubmit { fieldInFocus = .habitGoal }
+                
                 HStack(alignment: .lastTextBaseline) {
                     CSInputField(
                         isSecureField: false,
@@ -65,10 +62,16 @@ struct AddHabitView: View {
                         input: $habitGoal,
                         keyboardType: .numberPad
                     )
+                    .focused($fieldInFocus, equals: .habitGoal)
+                    
                     CSFilledButton(label: "Add Habit", action: addHabit)
                 }
             }
+            .onAppear {
+                fieldInFocus = .habitName
+            }
         }
+        
         // Add new habit logic
         private func addHabit() {
             // check if habitGoal not nil or equal to 0
@@ -93,6 +96,10 @@ struct AddHabitView: View {
             )
             dismissView.toggle()
         }
+    }
+    
+    enum FocusedField: Hashable {
+        case habitName, habitGoal
     }
 }
 

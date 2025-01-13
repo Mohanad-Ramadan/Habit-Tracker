@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CSInputField: View {
+    
+    var shouldSanitizeDots = true
+    var charactersLimit = 25
     var isSecureField: Bool
     @State var fieldTitle: String
     @State var placeHolder: String
@@ -30,6 +33,10 @@ struct CSInputField: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
                     .keyboardType(.default)
+                    .onChange(of: input) { _, newValue in
+                        let sanitizedInput = newValue.sanitizeInput(charactersLimit: charactersLimit)
+                        input = sanitizedInput
+                    }
             } else {
                 TextField(placeHolder, text: $input)
                     .autocapitalization(.none)
@@ -39,6 +46,10 @@ struct CSInputField: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .autocorrectionDisabled()
                     .keyboardType(keyboardType)
+                    .onChange(of: input) { _, newValue in
+                        let sanitizedInput = newValue.sanitizeInput(charactersLimit: charactersLimit, sanitizeDots: shouldSanitizeDots)
+                        input = sanitizedInput
+                    }
             }
         }
         .padding(.bottom, 15)
