@@ -13,6 +13,10 @@ struct AuthenticationView: View {
     @State var animatelogeIn: Bool = true
     @State var animateSignUP: Bool = false
     @Binding var showSignInView: Bool
+    @Binding var showToast: (
+        active: Bool,
+        message: String
+    )
     // signView boolen computed property
     var islogeInView: Bool { authViewModel.currentSignView == .logInView }
     
@@ -24,14 +28,20 @@ struct AuthenticationView: View {
                 LinearGradient(gradient: Gradient(colors: [Color.orange, Color.white]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 
-                LogInView(showSignInView: $showSignInView)
+                LogInView(
+                    showSignInView: $showSignInView,
+                    showToast: $showToast
+                )
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(radius: 10)
                     .offset(x: islogeInView ? 0:-500)
                     .padding()
                 
-                SignUpView(showSignInView: $showSignInView)
+                SignUpView(
+                    showSignInView: $showSignInView,
+                    showToast: $showToast
+                )
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .shadow(radius: 10)
@@ -50,6 +60,6 @@ struct AuthenticationView: View {
 
 #Preview {
     NavigationStack {
-        AuthenticationView(showSignInView: .constant(true))
+        AuthenticationView(showSignInView: .constant(true), showToast: .constant((false, "")))
     }
 }

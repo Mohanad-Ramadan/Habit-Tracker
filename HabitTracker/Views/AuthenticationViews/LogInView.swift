@@ -13,6 +13,10 @@ struct LogInView: View {
     @Environment(\.dismiss) var dismissScreen
     @Binding var showSignInView: Bool
     @FocusState private var fieldInFocus: FocusedField?
+    @Binding var showToast: (
+        active: Bool,
+        message: String
+    )
     
     var body: some View {
         VStack(spacing: 0) {
@@ -91,7 +95,8 @@ struct LogInView: View {
                 try await logeInViewModel.logIn()
                 showSignInView = false
             } catch {
-                print(error.localizedDescription)
+                let message = error.localizedDescription
+                showToast = (true,message)
             }
         }
     }
@@ -106,7 +111,7 @@ struct LogInView: View {
 
 #Preview {
     NavigationStack {
-        LogInView(showSignInView: .constant(true))
+        LogInView(showSignInView: .constant(true), showToast: .constant((false, "")))
     }
     
 }

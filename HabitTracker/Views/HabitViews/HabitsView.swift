@@ -7,11 +7,16 @@
 
 
 import SwiftUI
+import AlertToast
 
 struct HabitsView: View {
     @StateObject var viewModel: HabitViewModel = HabitViewModel()
     @State var showAddHabitView: Bool = false
     @Binding var showSignInView: Bool
+    @State private var showToast: (
+        active: Bool,
+        message: String
+    ) = (false, "Error")
     
     var body: some View {
         NavigationStack {
@@ -39,8 +44,19 @@ struct HabitsView: View {
             .overlay(showAddHabitView ? AddHabitView(dismissView: $showAddHabitView) : nil)
             .animation(.linear, value: showAddHabitView)
         }
+        .toast(isPresenting: $showToast.active) {
+            AlertToast(
+                displayMode: .banner(.pop),
+                type: .error(.red),
+                title: "\(showToast.message)"
+            )
+        }
         .task {
-            try? await viewModel.loadUserHabits()
+            do {
+                try await viewModel.loadUserHabits()
+            } catch {
+                showToast = (active: true, message: error.localizedDescription)
+            }
         }
         .environmentObject(viewModel)
     }
@@ -52,7 +68,7 @@ struct HabitsView: View {
                 try await AuthenticationManager.shared.signOut()
                 showSignInView = true
             } catch {
-                print(error)
+                showToast = (active: true, message: error.localizedDescription)
             }
         }
     }

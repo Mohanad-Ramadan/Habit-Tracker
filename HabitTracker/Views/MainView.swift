@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct MainView: View {
     @State private var showSignInView: Bool = false
+    @State private var showToast: (
+        active: Bool,
+        message: String
+    ) = (false, "habit")
     
     var body: some View {
         ZStack {
@@ -16,15 +21,37 @@ struct MainView: View {
                 HabitsView(showSignInView: $showSignInView)
             }
         }
+        .toast(isPresenting: $showToast.active) {
+            AlertToast(
+                displayMode: .banner(.pop),
+                type: .error(.red),
+                title: "\(showToast.message)"
+            )
+        }
         .onAppear {
             Task {
-                let authUser = try await AuthenticationManager.shared.getAuthenticatedUser()
-                self.showSignInView = authUser == nil
+                do {
+                    let authUser = try await AuthenticationManager.shared.getAuthenticatedUser()
+                    self.showSignInView = authUser == nil
+                } catch {
+                    let message = error.localizedDescription
+                    showToast = (true, message)
+                }
             }
         }
         .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack {
-                AuthenticationView(showSignInView: $showSignInView)
+                AuthenticationView(
+                    showSignInView: $showSignInView,
+                    showToast: $showToast
+                )
+            }
+            .toast(isPresenting: $showToast.active) {
+                AlertToast(
+                    displayMode: .banner(.pop),
+                    type: .error(.red),
+                    title: "\(showToast.message)"
+                )
             }
         }
     }

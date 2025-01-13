@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
-
+import AlertToast
 
 struct SignUpView: View {
     @EnvironmentObject private var logeInViewModel: AuthViewModel
     @Environment(\.dismiss) var dismissScreen
     @Binding var showSignInView: Bool
     @FocusState private var fieldInFocus: FocusedField?
+    @Binding var showToast: (
+        active: Bool,
+        message: String
+    )
     
     var body: some View {
         VStack(spacing: 0) {
@@ -101,8 +105,6 @@ struct SignUpView: View {
         }
         .padding()
         .padding(.vertical, 15)
-        
-        
     }
     
     func authecticateNewUser() {
@@ -111,7 +113,8 @@ struct SignUpView: View {
                 try await logeInViewModel.createNewUser()
                 showSignInView = false
             } catch {
-                print(error)
+                let message = error.localizedDescription
+                showToast = (true,message)
             }
         }
     }
@@ -126,6 +129,6 @@ struct SignUpView: View {
 
 #Preview {
     NavigationStack {
-        SignUpView(showSignInView: .constant(false))
+        SignUpView(showSignInView: .constant(false), showToast: .constant((false, "")))
     }
 }
