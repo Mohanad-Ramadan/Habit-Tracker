@@ -45,13 +45,13 @@ struct MainView: View {
                     showSignInView: $showSignInView,
                     showToast: $showToast
                 )
-            }
-            .toast(isPresenting: $showToast.active) {
-                AlertToast(
-                    displayMode: .banner(.pop),
-                    type: .error(.red),
-                    title: "\(showToast.message)"
-                )
+                .toast(isPresenting: $showToast.active) {
+                    AlertToast(
+                        displayMode: .banner(.pop),
+                        type: .error(.red),
+                        title: "\(showToast.message)"
+                    )
+                }
             }
         }
     }

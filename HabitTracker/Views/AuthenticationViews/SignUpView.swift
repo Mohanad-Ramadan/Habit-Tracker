@@ -114,7 +114,7 @@ struct SignUpView: View {
                 showSignInView = false
             } catch {
                 let message = error.localizedDescription
-                showToast = (true,message)
+                showToast = (true , message)
             }
         }
     }

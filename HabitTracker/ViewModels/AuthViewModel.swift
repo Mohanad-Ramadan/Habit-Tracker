@@ -22,7 +22,7 @@ final class AuthViewModel: ObservableObject {
     func logIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("Email or Password is empty")
-            return
+            throw EmptyFieldsError.emialOrPassIsEmpty
         }
         try await AuthenticationManager.shared.logeIn(email: email ,password: password)
     }
@@ -30,7 +30,7 @@ final class AuthViewModel: ObservableObject {
     func createNewUser() async throws {
         guard !email.isEmpty, !password.isEmpty, !userName.isEmpty else {
             print("Email or Password is empty")
-            return
+            throw EmptyFieldsError.emialOrPassIsEmpty
         }
         
         try await AuthenticationManager.shared.createNewUser(email: email ,password: password, userName: userName)
@@ -43,3 +43,14 @@ enum SignInViewType {
     case logInView, signUpView
 }
 
+//MARK: - Empty Fields errors
+enum EmptyFieldsError: LocalizedError {
+    case emialOrPassIsEmpty
+    
+    var errorDescription: String? {
+        switch self {
+        case .emialOrPassIsEmpty:
+            return "Email or Password is empty."
+        }
+    }
+}

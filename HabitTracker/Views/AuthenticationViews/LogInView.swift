@@ -96,7 +96,7 @@ struct LogInView: View {
                 showSignInView = false
             } catch {
                 let message = error.localizedDescription
-                showToast = (true,message)
+                showToast = (true , message)
             }
         }
     }
